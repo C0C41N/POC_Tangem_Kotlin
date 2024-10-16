@@ -2,14 +2,12 @@ package com.example.poctangem
 
 import androidx.activity.ComponentActivity
 import com.tangem.TangemSdk
-import com.tangem.common.authentication.DummyAuthenticationManager
 import com.tangem.common.card.FirmwareVersion
 import com.tangem.common.core.Config
 import com.tangem.common.services.secure.SecureStorage
 import com.tangem.crypto.bip39.Wordlist
 import com.tangem.sdk.DefaultSessionViewDelegate
 import com.tangem.sdk.extensions.getWordlist
-import com.tangem.sdk.extensions.initKeystoreManager
 import com.tangem.sdk.extensions.initNfcManager
 import com.tangem.sdk.nfc.AndroidNfcAvailabilityProvider
 import com.tangem.sdk.storage.create
@@ -25,8 +23,6 @@ object TangemSdkProvider {
     }
 
     fun init(context: ComponentActivity) {
-
-        val authenticationManager = DummyAuthenticationManager()
 
         val config = Config().apply {
             linkedTerminal = false
@@ -50,8 +46,6 @@ object TangemSdkProvider {
             secureStorage = secureStorage,
             wordlist = Wordlist.getWordlist(context),
             config = config,
-            authenticationManager = authenticationManager,
-            keystoreManager = TangemSdk.initKeystoreManager(authenticationManager, secureStorage),
         )
 
     }

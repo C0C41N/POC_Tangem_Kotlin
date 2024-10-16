@@ -12,6 +12,10 @@ class Action() {
 
     fun scan() {
 
+//        sdk.startSession { session, error ->
+//
+//        }
+
         sdk.scanCard(
             initialMessage = null,
             allowRequestUserCodeFromRepository = true
