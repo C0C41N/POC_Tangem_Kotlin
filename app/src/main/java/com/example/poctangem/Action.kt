@@ -27,7 +27,7 @@ class Action {
             val startSessionResult = sdk.startSessionAsync(null, null, accessCode = "141414")
 
             if (!startSessionResult.success || startSessionResult.value == null) {
-                println("Start Session failed: ${startSessionResult.error}")
+                Log.e(logTag,"Start Session failed: ${startSessionResult.error}")
                 return@launch
             }
 
@@ -37,7 +37,7 @@ class Action {
             val scanResult = scanTask.runAsync(session)
 
             if (!scanResult.success || scanResult.value == null) {
-                println("ScanTask failed: ${scanResult.error}")
+                Log.e(logTag, "ScanTask failed: ${scanResult.error}")
                 session.stop()
                 return@launch
             }
@@ -71,7 +71,7 @@ class Action {
             val startSessionResult = sdk.startSessionAsync(null, null, accessCode = "141414")
 
             if (!startSessionResult.success || startSessionResult.value == null) {
-                println("Start Session failed: ${startSessionResult.error}")
+                Log.e(logTag,"Start Session failed: ${startSessionResult.error}")
                 return@launch
             }
 
@@ -81,7 +81,7 @@ class Action {
             val signResult = signTask.runAsync(session)
 
             if (!signResult.success || signResult.value == null) {
-                println("SignTask failed: ${signResult.error}")
+                Log.e(logTag,"SignTask failed: ${signResult.error}")
                 session.stop()
                 return@launch
             }
@@ -101,7 +101,7 @@ class Action {
             val startSessionResult = sdk.startSessionAsync(null, null, accessCode = "141414")
 
             if (!startSessionResult.success || startSessionResult.value == null) {
-                println("Start Session failed: ${startSessionResult.error}")
+                Log.e(logTag,"Start Session failed: ${startSessionResult.error}")
                 return@launch
             }
 
@@ -111,7 +111,7 @@ class Action {
             val scanResult = scanTask.runAsync(session)
 
             if (!scanResult.success || scanResult.value == null) {
-                println("ScanTask failed: ${scanResult.error}")
+                Log.e(logTag,"ScanTask failed: ${scanResult.error}")
                 session.stop()
                 return@launch
             }
@@ -123,7 +123,7 @@ class Action {
                 val purgeResult = purgeTask.runAsync(session)
 
                 if (!purgeResult.success || purgeResult.value == null) {
-                    println("PurgeTask failed: ${purgeResult.error}")
+                    Log.e(logTag,"PurgeTask failed: ${purgeResult.error}")
                     session.stop()
                     return@launch
                 }
@@ -146,7 +146,7 @@ class Action {
             val startSessionResult = sdk.startSessionAsync(null, null, accessCode = "141414")
 
             if (!startSessionResult.success || startSessionResult.value == null) {
-                println("Start Session failed: ${startSessionResult.error}")
+                Log.e(logTag,"Start Session failed: ${startSessionResult.error}")
                 return@launch
             }
 
@@ -158,7 +158,7 @@ class Action {
                 val createWalletResult = createWallet.runAsync(session)
 
                 if (!createWalletResult.success || createWalletResult.value == null) {
-                    println("CreateWalletTask failed: ${createWalletResult.error}")
+                    Log.e(logTag,"CreateWalletTask failed: ${createWalletResult.error}")
                     session.stop()
                     return@launch
                 }
