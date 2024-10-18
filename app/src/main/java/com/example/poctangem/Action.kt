@@ -11,6 +11,10 @@ import com.tangem.crypto.encodeToBase58String
 import com.tangem.operations.sign.SignCommand
 import com.tangem.operations.wallet.CreateWalletTask
 import com.tangem.operations.wallet.PurgeWalletCommand
+import com.tangem.sdk.codora.TangemSdkProvider
+import com.tangem.sdk.codora.runAsync
+import com.tangem.sdk.codora.startSessionAsync
+import com.tangem.sdk.codora.toJson
 import kotlinx.coroutines.DelicateCoroutinesApi
 
 const val logTag = "Action"
@@ -31,7 +35,7 @@ class Action {
                 return@launch
             }
 
-            val session = startSessionResult.value
+            val session = startSessionResult.value!!
 
             val scanTask = ScanTask()
             val scanResult = scanTask.runAsync(session)
@@ -42,7 +46,7 @@ class Action {
                 return@launch
             }
 
-            val card = scanResult.value
+            val card = scanResult.value!!
 
             Log.d(logTag, card.toJson())
 
@@ -75,7 +79,7 @@ class Action {
                 return@launch
             }
 
-            val session = startSessionResult.value
+            val session = startSessionResult.value!!
 
             val signTask = SignCommand(arrayOf(unsignedHex), publicKey)
             val signResult = signTask.runAsync(session)
@@ -86,7 +90,7 @@ class Action {
                 return@launch
             }
 
-            val signature = signResult.value.signatures[0]
+            val signature = signResult.value!!.signatures[0]
             Log.d(logTag, "Signed Hex | ${signature.toHexString()}")
 
             session.stop()
@@ -105,7 +109,7 @@ class Action {
                 return@launch
             }
 
-            val session = startSessionResult.value
+            val session = startSessionResult.value!!
 
             val scanTask = ScanTask()
             val scanResult = scanTask.runAsync(session)
@@ -116,7 +120,7 @@ class Action {
                 return@launch
             }
 
-            val card = scanResult.value
+            val card = scanResult.value!!
 
             for (wallet in card.wallets) {
                 val purgeTask = PurgeWalletCommand(wallet.publicKey)
@@ -150,7 +154,7 @@ class Action {
                 return@launch
             }
 
-            val session = startSessionResult.value
+            val session = startSessionResult.value!!
             val curves: List<EllipticCurve> = listOf(EllipticCurve.Secp256k1, EllipticCurve.Ed25519, EllipticCurve.Bls12381G2Aug, EllipticCurve.Bip0340, EllipticCurve.Ed25519Slip0010)
 
             for(curve in curves) {
@@ -163,7 +167,7 @@ class Action {
                     return@launch
                 }
 
-                val wallet = createWalletResult.value.wallet
+                val wallet = createWalletResult.value!!.wallet
 
                 Log.d(logTag, "Created wallet ${wallet.curve.name} | ${wallet.publicKey.encodeToBase58String()}")
             }

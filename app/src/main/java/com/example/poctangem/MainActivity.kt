@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.poctangem.ui.theme.PocTangemAndroidTheme
+import com.tangem.sdk.codora.TangemSdkProvider
 
 class MainActivity : ComponentActivity() {
 

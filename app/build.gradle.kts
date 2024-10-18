@@ -71,7 +71,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     // Tangem libraries
-    implementation("com.github.c0c41n:android:5.16.3")
-    implementation("com.github.c0c41n:core:5.16.3")
+    implementation("com.github.c0c41n:android:5.16.4")
+    implementation("com.github.c0c41n:core:5.16.4")
 
 }
