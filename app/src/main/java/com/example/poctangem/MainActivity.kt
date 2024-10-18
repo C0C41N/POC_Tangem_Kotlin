@@ -52,8 +52,45 @@ fun MainContent(modifier: Modifier = Modifier) {
                 modifier = Modifier
                     .wrapContentSize()
                     .padding(16.dp)
+                    .width(300.dp)
             ) {
                 Text("Scan")
+            }
+
+            Button(
+                onClick = {
+                    actionHandler.sign()
+                },
+                modifier = Modifier
+                    .wrapContentSize()
+                    .padding(16.dp)
+                    .width(300.dp)
+            ) {
+                Text("Sign")
+            }
+
+            Button(
+                onClick = {
+                    actionHandler.purgeAllWallets()
+                },
+                modifier = Modifier
+                    .wrapContentSize()
+                    .padding(16.dp)
+                    .width(300.dp)
+            ) {
+                Text("Purge All Wallets")
+            }
+
+            Button(
+                onClick = {
+                    actionHandler.createAllWallets()
+                },
+                modifier = Modifier
+                    .wrapContentSize()
+                    .padding(16.dp)
+                    .width(300.dp)
+            ) {
+                Text("Create All Wallets")
             }
         }
     }

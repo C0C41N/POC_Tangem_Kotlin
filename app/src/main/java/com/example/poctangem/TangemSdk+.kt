@@ -10,6 +10,8 @@ import com.tangem.common.core.CardSession
 import com.tangem.common.core.TangemError
 import com.tangem.common.json.MoshiJsonConverter
 import com.tangem.operations.ScanTask
+import com.tangem.operations.sign.SignCommand
+import com.tangem.operations.sign.SignResponse
 
 private val json = MoshiJsonConverter.default()
 
@@ -30,6 +32,21 @@ suspend fun TangemSdk.startSessionAsync(cardId: String?, initialMessage: Message
 }
 
 suspend fun  ScanTask.runAsync(session: CardSession): Eval<Card, TangemError> {
+    return suspendCoroutine { continuation ->
+        this.run(session) { outcome ->
+            when (outcome) {
+                is CompletionResult.Success -> {
+                    continuation.resume(Eval.success(outcome.data))
+                }
+                is CompletionResult.Failure -> {
+                    continuation.resume(Eval.failure(outcome.error))
+                }
+            }
+        }
+    }
+}
+
+suspend fun SignCommand.runAsync(session: CardSession): Eval<SignResponse, TangemError> {
     return suspendCoroutine { continuation ->
         this.run(session) { outcome ->
             when (outcome) {
