@@ -6,10 +6,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import com.tangem.crypto.encodeToBase58String
+import kotlinx.coroutines.DelicateCoroutinesApi
 
 const val logTag = "Action"
 
-class Action() {
+@OptIn(DelicateCoroutinesApi::class)
+class Action {
 
     private val sdk = TangemSdkProvider.getInstance()
 
